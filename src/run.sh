@@ -7,6 +7,8 @@ main() {
     python:3.11-alpine python -c '
 import os
 import shutil
+import sys
+from importlib import import_module
 
 user_files = os.getcwd()
 
@@ -17,8 +19,7 @@ with open(os.path.join("main", "__init__.py"), "w"):
 
 shutil.copytree(user_files, os.path.join("main", "src"))
 
-print(os.listdir(os.path.join("main", "src")))
-from main.src import app
+import_module("main.src.app")
 '
 }
 
